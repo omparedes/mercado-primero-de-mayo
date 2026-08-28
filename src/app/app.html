@@ -131,6 +131,42 @@
     </div>
   </section>
 
+  <section class="section founders" id="fundadores" aria-labelledby="founders-title">
+    <div class="container">
+      <div class="founders-intro">
+        <div>
+          <p class="eyebrow eyebrow-gold">El origen de nuestra cooperativa</p>
+          <h2 id="founders-title">Honor y gratitud a nuestros socios fundadores.</h2>
+        </div>
+        <div class="founders-legacy">
+          <strong>51</strong>
+          <p>
+            Fueron quienes lucharon por conseguir el terreno, iniciar la construcción y hacer realidad el Mercado
+            Cooperativo Primero de Mayo.
+          </p>
+        </div>
+      </div>
+
+      <div class="founders-panel">
+        <p class="founders-dedication">
+          Sus nombres forman parte de nuestra memoria. Recordamos con especial cariño a quienes ya no están
+          físicamente con nosotros y agradecemos el esfuerzo de cada persona que dio origen a esta historia.
+        </p>
+
+        <ol class="founders-list" aria-label="Lista de los 51 socios fundadores">
+          @for (founder of founders; track founder; let index = $index) {
+            <li class="founder-item">
+              <span class="founder-number" aria-hidden="true">@if (index < 9) {0}{{ index + 1 }}</span>
+              <span>{{ founder }}</span>
+            </li>
+          }
+        </ol>
+
+        <p class="founders-closing">Su legado vive en cada puesto, en cada familia y en cada nueva generación.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="section gallery" id="galeria" aria-labelledby="gallery-title">
     <div class="container">
       <div class="gallery-heading">

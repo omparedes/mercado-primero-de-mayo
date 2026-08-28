@@ -9,7 +9,7 @@ import {
   LucideStore,
   LucideX,
 } from '@lucide/angular';
-import { GALLERY_ITEMS, GalleryItem, SITE_CONTENT } from './site-content';
+import { FOUNDERS, GALLERY_ITEMS, GalleryItem, SITE_CONTENT } from './site-content';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +28,7 @@ import { GALLERY_ITEMS, GalleryItem, SITE_CONTENT } from './site-content';
 })
 export class App {
   protected readonly content = SITE_CONTENT;
+  protected readonly founders = FOUNDERS;
   protected readonly galleryItems = GALLERY_ITEMS;
   protected readonly menuOpen = signal(false);
   protected readonly selectedImage = signal<GalleryItem | null>(null);

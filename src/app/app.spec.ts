@@ -16,6 +16,7 @@ describe('App', () => {
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain('Un mercado que vive');
-    expect(compiled.querySelectorAll('main section')).toHaveLength(5);
+    expect(compiled.querySelectorAll('main section')).toHaveLength(6);
+    expect(compiled.querySelectorAll('.founder-item')).toHaveLength(51);
   });
 });
