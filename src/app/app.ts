@@ -1,37 +1,17 @@
 import { Component, HostListener, signal } from '@angular/core';
-import {
-  LucideArrowRight,
-  LucideCalendarDays,
-  LucideMapPin,
-  LucideMenu,
-  LucidePhone,
-  LucideSparkles,
-  LucideStore,
-  LucideX,
-} from '@lucide/angular';
-import { FOUNDERS, GALLERY_ITEMS, GalleryItem, SITE_CONTENT } from './site-content';
+import { LucideMenu, LucideX } from '@lucide/angular';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { SITE_CONTENT } from './site-shell-content';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    LucideArrowRight,
-    LucideCalendarDays,
-    LucideMapPin,
-    LucideMenu,
-    LucidePhone,
-    LucideSparkles,
-    LucideStore,
-    LucideX,
-  ],
+  imports: [LucideMenu, LucideX, RouterLink, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
   protected readonly content = SITE_CONTENT;
-  protected readonly founders = FOUNDERS;
-  protected readonly galleryItems = GALLERY_ITEMS;
   protected readonly menuOpen = signal(false);
-  protected readonly selectedImage = signal<GalleryItem | null>(null);
 
   protected toggleMenu(): void {
     this.menuOpen.update((open) => !open);
@@ -41,17 +21,8 @@ export class App {
     this.menuOpen.set(false);
   }
 
-  protected openImage(item: GalleryItem): void {
-    this.selectedImage.set(item);
-  }
-
-  protected closeImage(): void {
-    this.selectedImage.set(null);
-  }
-
   @HostListener('document:keydown.escape')
   protected onEscape(): void {
-    this.closeImage();
     this.closeMenu();
   }
 }

@@ -1,0 +1,33 @@
+<main>
+  <section class="inner-hero">
+    <div class="container inner-hero-grid">
+      <div>
+        <p class="eyebrow eyebrow-gold">Nuestra memoria visual</p>
+        <h1>Galería del Mercado Primero de Mayo</h1>
+        <p>Historias de fe, gratitud y comunidad reunidas en imágenes por nuestras Bodas de Oro.</p>
+      </div>
+      <div class="inner-hero-stat"><strong>{{ photoCount }}</strong><span>fotografías publicadas</span></div>
+    </div>
+  </section>
+
+  <section class="section content-section">
+    <div class="container">
+      <div class="album-grid">
+        @for (album of albums; track album.slug) {
+          <article class="album-summary-card">
+            <a [routerLink]="['/galeria', album.slug]" class="album-summary-image">
+              <img [src]="album.cover" [alt]="album.coverAlt" loading="lazy" decoding="async" />
+              <span>{{ album.photos.length }} @if (album.photos.length === 1) {foto} @else {fotos}</span>
+            </a>
+            <div>
+              <p class="content-meta"><span>{{ album.eyebrow }}</span>{{ album.date }}</p>
+              <h2><a [routerLink]="['/galeria', album.slug]">{{ album.title }}</a></h2>
+              <p>{{ album.description }}</p>
+              <a class="card-link" [routerLink]="['/galeria', album.slug]">Abrir álbum <svg lucideArrowRight aria-hidden="true"></svg></a>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+</main>

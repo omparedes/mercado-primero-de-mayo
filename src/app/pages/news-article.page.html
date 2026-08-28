@@ -1,0 +1,46 @@
+<main>
+  @if (article; as currentArticle) {
+    <article class="article-page">
+      <header class="article-header container">
+        <a class="back-link" routerLink="/noticias"><svg lucideArrowLeft aria-hidden="true"></svg> Volver a noticias</a>
+        <p class="content-meta"><span>{{ currentArticle.category }}</span>{{ currentArticle.publishedAt }}</p>
+        <h1>{{ currentArticle.title }}</h1>
+        <p class="article-lead">{{ currentArticle.excerpt }}</p>
+        <p class="article-signature">Por Mercado Cooperativo Primero de Mayo</p>
+      </header>
+
+      <div class="container article-layout">
+        <img class="article-cover" [src]="currentArticle.image" [alt]="currentArticle.imageAlt" />
+        <div class="article-body">
+          @for (paragraph of currentArticle.body; track paragraph) {
+            <p>{{ paragraph }}</p>
+          }
+
+          @if (relatedAlbum; as album) {
+            <aside class="article-related">
+              <img [src]="album.cover" [alt]="album.coverAlt" loading="lazy" />
+              <div>
+                <span>Galería relacionada</span>
+                <h2>{{ album.title }}</h2>
+                <a class="card-link" [routerLink]="['/galeria', album.slug]">Ver {{ album.photos.length }} fotografías <svg lucideArrowRight aria-hidden="true"></svg></a>
+              </div>
+            </aside>
+          }
+
+          @if (currentArticle.relatedVideo; as videoId) {
+            <a class="article-video" [href]="'https://www.youtube.com/watch?v=' + videoId" target="_blank" rel="noopener noreferrer">
+              <img [src]="youtubeThumbnail(videoId)" alt="Miniatura del video relacionado" loading="lazy" />
+              <span><svg lucidePlay aria-hidden="true"></svg> Ver video relacionado</span>
+            </a>
+          }
+        </div>
+      </div>
+    </article>
+  } @else {
+    <section class="section empty-state container">
+      <h1>Noticia no encontrada</h1>
+      <p>La publicación que buscas no está disponible.</p>
+      <a class="pill pill-gold" routerLink="/noticias">Volver a noticias</a>
+    </section>
+  }
+</main>

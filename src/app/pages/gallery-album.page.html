@@ -1,0 +1,46 @@
+<main>
+  @if (album; as currentAlbum) {
+    <section class="album-hero">
+      <img [src]="currentAlbum.cover" [alt]="currentAlbum.coverAlt" />
+      <div class="album-hero-overlay"></div>
+      <div class="container album-hero-copy">
+        <a class="back-link back-link-light" routerLink="/galeria"><svg lucideArrowLeft aria-hidden="true"></svg> Volver a la galería</a>
+        <p class="eyebrow eyebrow-gold">{{ currentAlbum.eyebrow }}</p>
+        <h1>{{ currentAlbum.title }}</h1>
+        <p>{{ currentAlbum.description }}</p>
+        <span>{{ currentAlbum.date }} · {{ currentAlbum.photos.length }} @if (currentAlbum.photos.length === 1) {fotografía} @else {fotografías}</span>
+      </div>
+    </section>
+
+    <section class="section content-section">
+      <div class="container">
+        <div class="photo-grid">
+          @for (photo of visiblePhotos(); track photo.src) {
+            <button type="button" class="photo-card" (click)="openPhoto(photo)">
+              <img [src]="photo.src" [alt]="photo.alt" loading="lazy" decoding="async" />
+            </button>
+          }
+        </div>
+
+        @if (visibleCount() < currentAlbum.photos.length) {
+          <div class="load-more-wrap">
+            <button type="button" class="pill pill-gold" (click)="showMore()">Cargar más fotografías</button>
+          </div>
+        }
+      </div>
+    </section>
+  } @else {
+    <section class="section empty-state container">
+      <h1>Álbum no encontrado</h1>
+      <p>El álbum que buscas no está disponible.</p>
+      <a class="pill pill-gold" routerLink="/galeria">Volver a la galería</a>
+    </section>
+  }
+</main>
+
+@if (selectedPhoto(); as photo) {
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada de la fotografía" (click)="closePhoto()">
+    <button type="button" aria-label="Cerrar fotografía" (click)="closePhoto()"><svg lucideX aria-hidden="true"></svg></button>
+    <img [src]="photo.src" [alt]="photo.alt" (click)="$event.stopPropagation()" />
+  </div>
+}

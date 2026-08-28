@@ -1,0 +1,62 @@
+<main>
+  <section class="inner-hero">
+    <div class="container inner-hero-grid">
+      <div>
+        <p class="eyebrow eyebrow-gold">Nuestro canal</p>
+        <h1>Videos del Mercado Primero de Mayo</h1>
+        <p>Homenajes, tradiciones y actividades compartidas durante la celebración de nuestros 50 años.</p>
+      </div>
+      <div class="inner-hero-stat"><strong>{{ videos.length }}</strong><span>videos disponibles</span></div>
+    </div>
+  </section>
+
+  <section class="section content-section">
+    <div class="container">
+      @for (category of categories; track category) {
+        <section class="video-category" [attr.aria-labelledby]="'video-' + $index">
+          <div class="video-category-heading">
+            <p class="eyebrow">Colección</p>
+            <h2 [id]="'video-' + $index">{{ category }}</h2>
+          </div>
+
+          <div class="video-grid">
+            @for (video of videosFor(category); track video.youtubeId) {
+              <button type="button" class="video-card" (click)="openVideo(video)">
+                <span class="video-card-image">
+                  <img [src]="youtubeThumbnail(video.youtubeId)" [alt]="'Miniatura: ' + video.title" loading="lazy" decoding="async" />
+                  <span class="video-play"><svg lucidePlay aria-hidden="true"></svg></span>
+                  <small>{{ video.format }}</small>
+                </span>
+                <span class="video-card-copy">
+                  <strong>{{ video.title }}</strong>
+                  <span>Mercado Primero de Mayo</span>
+                </span>
+              </button>
+            }
+          </div>
+        </section>
+      }
+
+      <div class="youtube-cta">
+        <p>Visita nuestro canal para acompañar las próximas publicaciones.</p>
+        <a class="pill pill-gold" href="https://www.youtube.com/@MercadoPrimerodeMayo" target="_blank" rel="noopener noreferrer">Ver canal en YouTube</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+@if (selectedVideo(); as video) {
+  <div class="video-modal" role="dialog" aria-modal="true" [attr.aria-label]="video.title" (click)="closeVideo()">
+    <button type="button" aria-label="Cerrar video" (click)="closeVideo()"><svg lucideX aria-hidden="true"></svg></button>
+    <div class="video-player" (click)="$event.stopPropagation()">
+      @if (playerUrl(); as safeUrl) {
+        <iframe
+          [src]="safeUrl"
+          [title]="video.title"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      }
+    </div>
+  </div>
+}
