@@ -18,5 +18,6 @@ describe('App', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain('Un mercado que vive');
     expect(compiled.querySelectorAll('main section')).toHaveLength(6);
     expect(compiled.querySelectorAll('.founder-item')).toHaveLength(51);
+    expect(compiled.querySelector('.desktop-nav a[href="#fundadores"]')?.textContent).toContain('Fundadores');
   });
 });

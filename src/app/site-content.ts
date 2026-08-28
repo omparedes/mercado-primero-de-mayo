@@ -17,6 +17,7 @@ export const SITE_CONTENT = {
     'https://www.google.com/maps/search/Av.+Vargas+Machuca+306+San+Juan+de+Miraflores',
   nav: [
     { label: 'Nuestra historia', href: '#historia' },
+    { label: 'Fundadores', href: '#fundadores' },
     { label: 'Celebración', href: '#celebracion' },
     { label: 'Galería', href: '#galeria' },
     { label: 'Ubicación', href: '#ubicacion' },
