@@ -1,0 +1,199 @@
+<main id="inicio" class="page-shell">
+  <div class="anniversary-bar">Celebramos 50 años de historia, fe y comunidad</div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="Mercado Primero de Mayo, inicio" (click)="closeMenu()">
+        <img src="assets/logo-transparente.png" width="56" height="56" alt="Logo del Mercado Cooperativo Primero de Mayo" />
+        <span class="brand-copy">
+          <strong>Mercado Cooperativo</strong>
+          <small>Primero de Mayo</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navegación principal">
+        @for (item of content.nav; track item.href) {
+          <a [href]="item.href">{{ item.label }}</a>
+        }
+      </nav>
+
+      <a class="pill pill-gold visit-button" href="#ubicacion">Visítanos</a>
+
+      <button
+        class="menu-button"
+        type="button"
+        aria-label="Abrir menú"
+        [attr.aria-expanded]="menuOpen()"
+        (click)="toggleMenu()"
+      >
+        @if (menuOpen()) { <svg lucideX aria-hidden="true"></svg> }
+        @else { <svg lucideMenu aria-hidden="true"></svg> }
+      </button>
+    </div>
+
+    @if (menuOpen()) {
+      <nav class="mobile-nav" aria-label="Navegación móvil">
+        @for (item of content.nav; track item.href) {
+          <a [href]="item.href" (click)="closeMenu()">{{ item.label }}</a>
+        }
+      </nav>
+    }
+  </header>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow eyebrow-gold"><svg lucideSparkles aria-hidden="true"></svg> Desde {{ content.founded }}</p>
+        <h1 id="hero-title">Un mercado que vive en el corazón de <span>San Juan.</span></h1>
+        <p class="hero-lead">
+          Somos encuentro, trabajo cooperativo y tradición. Cada día abrimos nuestras puertas para servir a las
+          familias de San Juan de Miraflores.
+        </p>
+        <div class="hero-actions">
+          <a class="pill pill-gold" href="#celebracion">Conoce nuestra celebración <svg lucideArrowRight aria-hidden="true"></svg></a>
+          <a class="pill pill-outline" href="#historia">Nuestra historia</a>
+        </div>
+      </div>
+
+      <div class="poster-wrap">
+        <div class="poster-border" aria-hidden="true"></div>
+        <img
+          src="assets/aniversario.jpg"
+          width="700"
+          height="875"
+          alt="Afiche oficial: 50 años Bodas de Oro y Fiesta Patronal de Santa Rosa de Lima"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+    <div class="hero-angle" aria-hidden="true"></div>
+  </section>
+
+  <section class="section celebration" id="celebracion" aria-labelledby="celebration-title">
+    <div class="container">
+      <div class="celebration-intro">
+        <div>
+          <p class="eyebrow">Una fecha para recordar</p>
+          <h2 id="celebration-title">Bodas de Oro: 50 años compartiendo contigo</h2>
+        </div>
+        <p>
+          Este 2026 celebramos cinco décadas de esfuerzo, unión y servicio. Te invitamos a ser parte de nuestra
+          fiesta central en honor a Santa Rosa de Lima, patrona de nuestro mercado.
+        </p>
+      </div>
+
+      <div class="event-grid">
+        <article class="event-card event-card-soft">
+          <svg lucideCalendarDays class="card-icon" aria-hidden="true"></svg>
+          <p class="card-kicker">Fiesta central</p>
+          <h3>29 y 30</h3>
+          <p>de agosto de 2026</p>
+        </article>
+        <article class="event-card event-card-green">
+          <svg lucideStore class="card-icon" aria-hidden="true"></svg>
+          <p class="card-kicker">Nuestro compromiso</p>
+          <h3>Comercio justo</h3>
+          <p>Trabajo cooperativo para nuestra comunidad.</p>
+        </article>
+        <article class="event-card event-card-outline">
+          <svg lucideMapPin class="card-icon" aria-hidden="true"></svg>
+          <p class="card-kicker">Encuéntranos</p>
+          <h3>Av. Vargas Machuca 306</h3>
+          <p>Zona B · San Juan de Miraflores</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section history" id="historia" aria-labelledby="history-title">
+    <div class="container history-grid">
+      <div class="history-photo">
+        <img
+          src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=85"
+          alt="Manos de una comerciante atendiendo su negocio"
+          loading="lazy"
+        />
+        <div class="history-badge"><strong>50</strong><span>años de historia</span></div>
+      </div>
+      <div class="history-copy">
+        <p class="eyebrow">Nuestra esencia</p>
+        <h2 id="history-title">Crecer juntos es nuestra forma de avanzar.</h2>
+        <p>
+          El Mercado Cooperativo Primero de Mayo nació con una visión sencilla y poderosa: organizarnos para brindar
+          un mejor servicio a nuestras familias y construir oportunidades para todos.
+        </p>
+        <p>
+          Hoy seguimos siendo un punto de encuentro donde la confianza se construye puesto a puesto, generación tras
+          generación.
+        </p>
+        <a class="underlined-link" href="#ubicacion">Ven a conocernos <svg lucideArrowRight aria-hidden="true"></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section gallery" id="galeria" aria-labelledby="gallery-title">
+    <div class="container">
+      <div class="gallery-heading">
+        <div>
+          <p class="eyebrow">Momentos que nos unen</p>
+          <h2 id="gallery-title">Así se vive nuestro mercado</h2>
+        </div>
+        <span class="gallery-hint">Ver todas las fotos <svg lucideArrowRight aria-hidden="true"></svg></span>
+      </div>
+
+      <div class="gallery-grid">
+        @for (item of galleryItems; track item.src; let index = $index) {
+          <button class="gallery-card" [class.gallery-card-featured]="index === 0" type="button" (click)="openImage(item)">
+            <img [src]="item.src" [alt]="item.alt" loading="lazy" decoding="async" />
+            <span class="gallery-label">{{ item.label }}</span>
+          </button>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section location" id="ubicacion" aria-labelledby="location-title">
+    <div class="container location-grid">
+      <div class="location-copy">
+        <p class="eyebrow eyebrow-gold">Estamos cerca de ti</p>
+        <h2 id="location-title">Pasa por el Primero de Mayo.</h2>
+        <p>Te esperamos con productos frescos, atención cercana y la calidez de siempre.</p>
+        <div class="contact-list">
+          <div><svg lucideMapPin aria-hidden="true"></svg><span>{{ content.address }}<br />{{ content.district }}</span></div>
+          <div><svg lucidePhone aria-hidden="true"></svg><span>Atención a nuestros socios y vecinos</span></div>
+        </div>
+      </div>
+
+      <div class="map-card">
+        <svg lucideMapPin class="map-pin" aria-hidden="true"></svg>
+        <h3>Mercado Cooperativo<br />Primero de Mayo</h3>
+        <p>San Juan de Miraflores · Lima, Perú</p>
+        <a class="pill pill-gold" [href]="content.mapsUrl" target="_blank" rel="noopener noreferrer">
+          Cómo llegar <svg lucideArrowRight aria-hidden="true"></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div class="footer-brand">
+        <img src="assets/logo-transparente.png" width="48" height="48" loading="lazy" alt="Logo Mercado Primero de Mayo" />
+        <div><strong>{{ content.name }}</strong><span>50 años sirviendo a nuestra comunidad</span></div>
+      </div>
+      <nav aria-label="Navegación del pie de página">
+        <a href="#inicio">Inicio</a><a href="#historia">Historia</a><a href="#ubicacion">Contacto</a>
+        <a class="social-link" href="#inicio" aria-label="Facebook">f</a>
+        <a class="social-link" href="#inicio" aria-label="Instagram">ig</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">© 2026 Mercado Cooperativo Primero de Mayo Ltda. · San Juan de Miraflores, Lima</div>
+  </footer>
+</main>
+
+@if (selectedImage(); as image) {
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada de la imagen" (click)="closeImage()">
+    <button type="button" aria-label="Cerrar imagen" (click)="closeImage()"><svg lucideX aria-hidden="true"></svg></button>
+    <img [src]="image.src" alt="Vista ampliada" (click)="$event.stopPropagation()" />
+  </div>
+}
